@@ -7,7 +7,6 @@ function Node (key) {
   this.left = null
   this.key = key
   this.data = null
-  this.color = null
 }
 
 Node.prototype.setData = function (data) {
@@ -43,7 +42,7 @@ Node.prototype.setLeft = function (leftChild) {
   if (leftChild === undefined) {
     throw new Error('Must pass leftChild')
   }
-  if (Object.getPrototypeOf(leftChild) !== Node.prototype && leftChild !== nul) {
+  if (leftChild !== null && Object.getPrototypeOf(leftChild) !== Node.prototype) {
     throw new Error('The prototype of a child must also be Node or null')
   }
   this.left = leftChild
@@ -57,7 +56,7 @@ Node.prototype.setRight = function (rightChild) {
   if (rightChild === undefined) {
     throw new Error('Must pass data')
   }
-  if (Object.getPrototypeOf(rightChild) !== Node.prototype && rightChild !== null) {
+  if (rightChild !== null && Object.getPrototypeOf(rightChild) !== Node.prototype) {
     throw new Error('The prototype of a child must also be Node or null')
   }
   this.right = rightChild
@@ -65,18 +64,6 @@ Node.prototype.setRight = function (rightChild) {
 
 Node.prototype.getRight = function () {
   return this.right
-}
-
-Node.prototype.setColor = function (color) {
-  if (color !== 'red' && color !== 'black' && color !== null) {
-    throw new Error('The color must be red, black, or null')
-  }
-
-  this.color = color
-}
-
-Node.prototype.getColor = function () {
-  return this.color
 }
 
 module.exports = Node
